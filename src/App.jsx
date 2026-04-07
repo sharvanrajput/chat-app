@@ -1,4 +1,4 @@
-import { lazy } from 'react'
+import { lazy, Suspense } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import ProtectedRoute from './components/ProtectedRoute'
 
@@ -14,7 +14,8 @@ const user = true
 export default function App() {
   return (
     <>
-      <Routes>
+    <Suspense fallback={"loading"} >
+        <Routes>
         <Route element={<ProtectedRoute user={user} />} >
           <Route path='/' element={<Home />} />
           <Route path='/Chat/:chatid' element={<Chat />} />
@@ -28,6 +29,7 @@ export default function App() {
         } />
 
       </Routes >
+    </Suspense>
 
     </>
   )

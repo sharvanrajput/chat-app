@@ -8,7 +8,7 @@ export default function Layout(WrappedComponent) {
       <>
         <SidebarProvider
           style={{
-            "--sidebar-width": "20rem",
+            "--sidebar-width": "25rem",
             "--sidebar-width-mobile": "20rem",
           }}
         >
