@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { Button } from "@/components/ui/button"
+import React, { useState } from "react";
+import { Button } from "@/components/ui/button";
 
 import {
   Card,
@@ -9,90 +9,87 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { Camera } from 'lucide-react'
-import z from 'zod'
-
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Camera } from "lucide-react";
+import z from "zod";
 
 const loginSchema = z.object({
   email: z.string().email("Invalid email"),
-  password: z.string().min(6, "Password must be at least 6 characters")
-})
+  password: z.string().min(6, "Password must be at least 6 characters"),
+});
 
-
-const registerSchema = z.object({
-  name: z.string().min(3, "Name must be at least 3 Characters"),
-  email: z.string().email(3, "Invalid email"),
-  password: z.string().min(6, "Password must be at least 6 Characters"),
-  conpassword: z.string(),
-}).refine((data) => data.password === data.conpassword, {
-  message: "Password do not match",
-  path: ["conpassword"]
-})
-
+const registerSchema = z
+  .object({
+    name: z.string().min(3, "Name must be at least 3 Characters"),
+    email: z.string().email(3, "Invalid email"),
+    password: z.string().min(6, "Password must be at least 6 Characters"),
+    conpassword: z.string(),
+  })
+  .refine((data) => data.password === data.conpassword, {
+    message: "Password do not match",
+    path: ["conpassword"],
+  });
 
 export default function Login() {
-
-  const [login, setLogin] = useState(false)
-  const [profile, setProfile] = useState(null)
+  const [login, setLogin] = useState(false);
+  const [profile, setProfile] = useState(null);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     password: "",
     conpassword: "",
-  })
+  });
 
-  const [errors, setErrors] = useState({})
+  const [errors, setErrors] = useState({});
 
   const inputChange = (e) => {
-    const { name, value } = e.target
-    setFormData(prev => ({
+    const { name, value } = e.target;
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
-    }))
-  }
+      [name]: value,
+    }));
+  };
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    const schema = login ? loginSchema : registerSchema
-    const reseult = schema.safeParse(formData)
+    e.preventDefault();
+    const schema = login ? loginSchema : registerSchema;
+    const reseult = schema.safeParse(formData);
+    console.log(reseult);
 
     if (!reseult.success) {
-      const fieldErrors = {}
+      const fieldErrors = {};
       reseult.error.issues.forEach((err) => {
-        fieldErrors[err.path[0]] = err.message
-      })
-      setErrors(fieldErrors)
+        fieldErrors[err.path[0]] = err.message;
+      });
+      setErrors(fieldErrors);
     } else {
-      setErrors({})
-      console.log(formData)
+      setErrors({});
+      console.log(formData);
       setFormData({
-    name: "",
-    email: "",
-    password: "",
-    conpassword: "",
-  })
+        name: "",
+        email: "",
+        password: "",
+        conpassword: "",
+      });
     }
-  }
+  };
 
-
-  const toggleLogin = () => { setLogin(prev => !prev) }
-
+  const toggleLogin = () => {
+    setLogin((prev) => !prev);
+  };
 
   return (
-    <div className='flex h-screen flex-1 justify-center items-center' >
-
-      {login ?
-        (<Card className="w-full max-w-sm">
+    <div className="flex h-screen flex-1 justify-center items-center">
+      {login ? (
+        <Card className="w-full max-w-sm">
           <CardHeader>
             <CardTitle>Login to your account</CardTitle>
             <CardDescription>
               Enter your email below to login to your account
             </CardDescription>
-
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit}>
@@ -107,7 +104,9 @@ export default function Login() {
                     onChange={inputChange}
                     required
                   />
-                  {errors.email && <p className="text-red-500">{errors.email}</p>}
+                  {errors.email && (
+                    <p className="text-red-500">{errors.email}</p>
+                  )}
                 </div>
                 <div className="grid gap-2">
                   <Label htmlFor="password">Password</Label>
@@ -119,23 +118,28 @@ export default function Login() {
                     type="password"
                     required
                   />
-                  {errors.password && <p className="text-red-500">{errors.password}</p>}
+                  {errors.password && (
+                    <p className="text-red-500">{errors.password}</p>
+                  )}
                 </div>
                 <div className="flex-col gap-2">
                   <Button type="submit" className="w-full">
                     Login
                   </Button>
-                  <Button onClick={toggleLogin} variant="outline" className="w-full">
+                  <Button
+                    onClick={toggleLogin}
+                    variant="outline"
+                    className="w-full"
+                  >
                     Register instud
                   </Button>
                 </div>
               </div>
-
             </form>
           </CardContent>
-
-        </Card>) :
-        (<Card className="w-full max-w-sm">
+        </Card>
+      ) : (
+        <Card className="w-full max-w-sm">
           <CardHeader>
             <CardTitle>Register your account</CardTitle>
             <CardDescription>
@@ -143,13 +147,23 @@ export default function Login() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <form onSubmit={handleSubmit} >
+            <form onSubmit={handleSubmit}>
               <div className="flex flex-col gap-6">
                 <div className="grid gap-2 place-content-center">
-                  <Avatar className={"size-25 relative"} >
-                    <AvatarImage className={"object-contain"} src={profile ? URL.createObjectURL(profile) : "https://github.com/shadcn.png"} />
+                  <Avatar className={"size-25 relative"}>
+                    <AvatarImage
+                      className={"object-contain"}
+                      src={
+                        profile
+                          ? URL.createObjectURL(profile)
+                          : "https://github.com/shadcn.png"
+                      }
+                    />
                     <AvatarFallback>CN</AvatarFallback>
-                    <Label htmlFor="profile" className='cursor-pointer active:scale-90 bg-gray-200 size-10 flex justify-center items-center rounded-full -bottom-2 -right-2 absolute  '>
+                    <Label
+                      htmlFor="profile"
+                      className="cursor-pointer active:scale-90 bg-gray-200 size-10 flex justify-center items-center rounded-full -bottom-2 -right-2 absolute  "
+                    >
                       <Camera />
                     </Label>
                     <Input
@@ -160,7 +174,6 @@ export default function Login() {
                       id="profile"
                     />
                   </Avatar>
-
                 </div>
                 <div className="grid gap-2">
                   <Label htmlFor="name">Name</Label>
@@ -168,7 +181,6 @@ export default function Login() {
                     id="name"
                     type="name"
                     name="name"
-
                     value={formData.name}
                     onChange={inputChange}
                     required
@@ -185,7 +197,9 @@ export default function Login() {
                     onChange={inputChange}
                     required
                   />
-                  {errors.email && <p className="text-red-500">{errors.email}</p>}
+                  {errors.email && (
+                    <p className="text-red-500">{errors.email}</p>
+                  )}
                 </div>
                 <div className="grid gap-2">
                   <Label htmlFor="password">Password</Label>
@@ -197,7 +211,9 @@ export default function Login() {
                     onChange={inputChange}
                     required
                   />
-                  {errors.password && <p className="text-red-500">{errors.password}</p>}
+                  {errors.password && (
+                    <p className="text-red-500">{errors.password}</p>
+                  )}
                 </div>
                 <div className="grid gap-2">
                   <Label htmlFor="conpassword">Conform Password</Label>
@@ -209,27 +225,27 @@ export default function Login() {
                     onChange={inputChange}
                     required
                   />
-                  {errors.conpassword && <p className="text-red-500">{errors.conpassword}</p>}
+                  {errors.conpassword && (
+                    <p className="text-red-500">{errors.conpassword}</p>
+                  )}
                 </div>
                 <div className="flex-col gap-2">
                   <Button type="submit" className="w-full">
                     Register
                   </Button>
-                  <Button onClick={toggleLogin} variant="outline" className="w-full">
+                  <Button
+                    onClick={toggleLogin}
+                    variant="outline"
+                    className="w-full"
+                  >
                     Login instud
                   </Button>
                 </div>
               </div>
-
             </form>
           </CardContent>
-
-        </Card>)
-      }
-
-
-
-
+        </Card>
+      )}
     </div>
-  )
+  );
 }

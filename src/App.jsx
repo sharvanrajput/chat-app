@@ -9,7 +9,7 @@ const Chat = lazy(() => import("./pages/Chat"))
 
 
 
-const user = false
+const user = true
 
 export default function App() {
   return (
