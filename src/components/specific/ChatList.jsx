@@ -4,7 +4,6 @@ import { SidebarMenu, SidebarMenuItem } from "../ui/sidebar";
 import ChatItem from "../shared/ChatItem";
 
 export default function ChatList({
-  w = "100%",
   chats = [],
   chatId,
   onlineUsers = [],
@@ -22,19 +21,27 @@ export default function ChatList({
         {chats.map((data, i) => {
           const { id, avatar, members } = data;
 
-          const newMessageCount = newMessagesAlert.find(({ chatId }) => chatId === id)?.count;
+          const newMessageCount = newMessagesAlert.find(
+            ({ chatId }) => chatId === id,
+          );
 
-          const isonline = members.some((member) => onlineUsers.includes(member))
+          const isonline = members.some((member) =>
+            onlineUsers.includes(member),
+          );
 
           const sameSender = chatId === id;
 
-          return <ChatItem key={i} {...data}
-            isOnline={isonline}
-            newMessageAlert={{ count: newMessageCount }}
-            avatar={avatar}
-            handleDeleteChatOpen={handleDeletechat}
-            sameSender={sameSender}
-          />;
+          return (
+            <ChatItem
+              key={i}
+              {...data}
+              isOnline={isonline}
+              newMessageAlert={newMessageCount}
+              avatar={avatar}
+              handleDeleteChatOpen={handleDeletechat}
+              sameSender={sameSender}
+            />
+          );
         })}
       </div>
       {false &&

@@ -1,8 +1,8 @@
 import React, { memo } from "react";
 import { Link } from "react-router-dom";
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import { Avatar, AvatarBadge, AvatarFallback, AvatarImage } from "../ui/avatar";
 
- function ChatItem({
+function ChatItem({
   avatar = [],
   name,
   id,
@@ -14,38 +14,32 @@ import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
   handleDeleteChatOpen,
 }) {
   return (
-    <Link to={`/chat/${id}`}
+    <Link
+      className="hover:bg-gray-500"
+      to={`/chat/${id}`}
       onContextMenu={(e) => handleDeleteChatOpen(e, id, groupchat)}
     >
       <div
-        className={`flex gap-4 items-center p-3 rounded-sm relative ${sameSender ? "bg-black text-white " : ""}   `}
+        className={`flex gap-4 items-center p-3 rounded-sm relative ${sameSender ? "bg-black text-white " : "bg-white text-black"}   `}
       >
-
-        <Avatar className={"size-10 relative"}>
+        <Avatar className={"size-10 relative rounded-full"}>
           <AvatarImage
             className={"object-contain"}
-            src={"https://github.com/shadcn.png"}
+            src={avatar}
           />
           <AvatarFallback>CN</AvatarFallback>
-
+          <AvatarBadge className="bg-green-600 dark:bg-green-800" />
         </Avatar>
 
         <div className="div">
           <p className="text-md font-semibold">{name}</p>
-          {
-            newMessageAlert && (
-              <p className="text-sm">{newMessageAlert.count} new message </p>
-            )
-          }
+          {newMessageAlert && (
+            <p className="text-sm">{newMessageAlert.count} new message </p>
+          )}
         </div>
-
-        <div
-          className="h-2 w-2 absolute top-0.5 left-12 bg-green-500 rounded-full"
-        />
-
       </div>
     </Link>
   );
 }
 
-export default memo(ChatItem)
+export default memo(ChatItem);

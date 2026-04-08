@@ -2,16 +2,15 @@ export const sampleChats = [
   {
     id: "1",
     name: "John Doe",
-    avatar: "https://github.com/shadcn.png",
+    avatar: ["https://github.com/shadcn.png"],
     groupChat: false,
-    members: [1,2,3],
+    members: ["1", "2"], 
   },
   {
     id: "2",
     name: "John Doe",
-    avatar: "https://github.com/shadcn.png",
+    avatar: ["https://github.com/shadcn.png"],
     groupChat: false,
-    members: [1,2,3],
-  }
-]
-    
+    members: ["1", "2"],
+  },
+];
