@@ -1,4 +1,5 @@
 import Layout from "@/components/Layout/Layout";
+import Title from "@/components/shared/Title";
 import React from "react";
 
 function Chat() {

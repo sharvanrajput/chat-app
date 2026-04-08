@@ -20,7 +20,21 @@ export default function ChatList({
     <>
       <div className=" ">
         {chats.map((data, i) => {
-          return <ChatItem />;
+          const { id, avatar, members } = data;
+
+          const newMessageCount = newMessagesAlert.find(({ chatId }) => chatId === id)?.count;
+
+          const isonline = members.some((member) => onlineUsers.includes(member))
+
+          const sameSender = chatId === id;
+
+          return <ChatItem key={i} {...data}
+            isOnline={isonline}
+            newMessageAlert={{ count: newMessageCount }}
+            avatar={avatar}
+            handleDeleteChatOpen={handleDeletechat}
+            sameSender={sameSender}
+          />;
         })}
       </div>
       {false &&

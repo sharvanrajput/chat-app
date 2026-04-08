@@ -11,6 +11,7 @@ import {
 import { Skeleton } from "./ui/skeleton";
 import ChatList from "./specific/ChatList";
 import ChatItem from "./shared/ChatItem";
+import { sampleChats } from "@/constants/sampleData";
 
 export default function AppSidebar() {
   return (
@@ -19,7 +20,7 @@ export default function AppSidebar() {
         <SidebarHeader className={"bg-white!"} />
         <SidebarContent className={"bg-white!"}>
           <SidebarGroup className={"space-y-4"}>
-            <ChatList chats={[1,2,3,4,5]} />
+            <ChatList chats={sampleChats} chatId={"1"} />
           </SidebarGroup>
         </SidebarContent>
         <SidebarFooter />
