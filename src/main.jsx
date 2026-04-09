@@ -8,7 +8,9 @@ createRoot(document.getElementById('root')).render(
   <>
     <HelmetProvider>
       <BrowserRouter>
-        <App />
+        <div onContextMenu={(e) => e.preventDefault()} >
+          <App />
+        </div>
       </BrowserRouter>
     </HelmetProvider>
   </>,

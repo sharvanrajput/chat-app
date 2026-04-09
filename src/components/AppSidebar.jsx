@@ -18,6 +18,11 @@ export default function AppSidebar() {
   const params = useParams();
   const chatid = params.chatid;
 
+  const handleDeletechat = (e, id, groupchat) => {
+    e.preventDefault();
+    console.log("delete chat with id:", id, "groupchat:", groupchat);
+  }
+
   return (
     <div>
       <Sidebar>
@@ -26,13 +31,18 @@ export default function AppSidebar() {
           <SidebarGroup className={"space-y-4"}>
             <ChatList
               chats={sampleChats}
-              chatId={"1"}
+              chatid={chatid}
               newMessagesAlert={[
                 {
-                  chatId: chatid,
-                  count: "2",
+                  chatId: "2",
+                  count: "1",
+                },
+                {
+                  chatId: "1",
+                  count: "15",
                 },
               ]}
+              handleDeletechat={handleDeletechat}
             />
           </SidebarGroup>
         </SidebarContent>

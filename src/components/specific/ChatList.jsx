@@ -5,7 +5,7 @@ import ChatItem from "../shared/ChatItem";
 
 export default function ChatList({
   chats = [],
-  chatId,
+  chatid,
   onlineUsers = [],
   newMessagesAlert = [
     {
@@ -29,7 +29,7 @@ export default function ChatList({
             onlineUsers.includes(member),
           );
 
-          const sameSender = chatId === id;
+          const sameSender = chatid === id;
 
           return (
             <ChatItem
@@ -38,7 +38,7 @@ export default function ChatList({
               isOnline={isonline}
               newMessageAlert={newMessageCount}
               avatar={avatar}
-              handleDeleteChatOpen={handleDeletechat}
+              handleDeletechat={handleDeletechat}
               sameSender={sameSender}
             />
           );
