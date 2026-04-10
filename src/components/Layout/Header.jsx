@@ -6,6 +6,11 @@ import {
   Users,
   UserSearch,
 } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../ui/button";
@@ -40,10 +45,25 @@ export default function Header() {
         <SidebarCloseIcon onClick={toggleSidebar} className="text-black" />
 
         <div className="flex items-center gap-3">
-          <Navitom fun={openSearch} Icon={UserSearch} tip="Search" />
-          <Navitom fun={openNewGroup} Icon={Plus} tip="New Group" />
+          <Navitom
+            fun={openSearch}
+            Icon={UserSearch}
+            tip="Search"
+            dylogBody={<Search />}
+          />
+          <Navitom
+            fun={openNewGroup}
+            Icon={Plus}
+            tip="New Group"
+            dylogBody={<NewGroups />}
+          />
           <Navitom fun={navigateToGroup} Icon={Users} tip="manage Group" />
-          <Navitom fun={openNotification} Icon={Bell} tip="Notifications" />
+          <Navitom
+            fun={openNotification}
+            Icon={Bell}
+            tip="Notifications"
+            dylogBody={<Notifications />}
+          />
           <Navitom
             fun={logouthandler}
             variant="destructive"
@@ -53,29 +73,53 @@ export default function Header() {
         </div>
       </div>
 
-      {isSearch && <Search />}
-      {isNotifications && <Notifications />}
-      {isNewGroup && <NewGroups />}
+      
     </nav>
   );
 }
 
-const Navitom = ({ fun, Icon, tip, variant = "outline" }) => {
+const Navitom = ({ fun, Icon, tip, dylogBody, variant = "outline" }) => {
+  if (dylogBody) {
+    return (
+      <Dialog>
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <DialogTrigger asChild>
+                <Button  
+                  variant={variant}
+                  size="icon"
+                  className={
+                    variant === "outline" &&
+                    "  bg-white text-black r  hover:bg-gray-200 "
+                  }
+                >
+                  <Icon />
+                </Button>
+              </DialogTrigger>
+            </TooltipTrigger>
+            <TooltipContent>{tip}</TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+        <DialogContent>{dylogBody}</DialogContent>
+      </Dialog>
+    );
+  }
   return (
     <TooltipProvider>
       <Tooltip>
         <TooltipTrigger asChild>
-          <Button
-            onClick={fun}
-            variant={variant}
-            size="icon"
-            className={
-              variant === "outline" &&
-              "  bg-white text-black r  hover:bg-gray-200 "
-            }
-          >
-            <Icon />
-          </Button>
+            <Button
+              onClick={fun}
+              variant={variant}
+              size="icon"
+              className={
+                variant === "outline" &&
+                "  bg-white text-black r  hover:bg-gray-200 "
+              }
+            >
+              <Icon />
+            </Button>
         </TooltipTrigger>
         <TooltipContent>{tip}</TooltipContent>
       </Tooltip>

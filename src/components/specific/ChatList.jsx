@@ -14,6 +14,7 @@ export default function ChatList({
     },
   ],
   handleDeletechat,
+  onClickSiceclose,
 }) {
   return (
     <>
@@ -33,6 +34,7 @@ export default function ChatList({
 
           return (
             <ChatItem
+              onClickSiceclose={onClickSiceclose}
               key={i}
               {...data}
               isOnline={isonline}

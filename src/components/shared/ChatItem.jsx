@@ -2,6 +2,7 @@ import React, { memo } from "react";
 import { Link } from "react-router-dom";
 import { Avatar, AvatarBadge, AvatarFallback, AvatarImage } from "../ui/avatar";
 import AvatarCard from "./AvatarCard";
+import { useSidebar } from "../ui/sidebar";
 
 function ChatItem({
   avatar = [],
@@ -13,12 +14,14 @@ function ChatItem({
   newMessageAlert,
   index = 0,
   handleDeletechat,
+  onClickSiceclose,
 }) {
   return (
     <Link
       className="hover:bg-gray-500"
       to={`/chat/${id}`}
       onContextMenu={(e) => handleDeletechat(e, id, groupchat)}
+      onClick={onClickSiceclose}
     >
       <div
         className={`flex gap-4 items-center p-3 rounded-sm relative ${sameSender ? "bg-black text-white " : "bg-white text-black"}   `}

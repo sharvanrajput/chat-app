@@ -7,6 +7,7 @@ import {
   SidebarHeader,
   SidebarMenu,
   SidebarMenuItem,
+  useSidebar,
 } from "./ui/sidebar";
 import { Skeleton } from "./ui/skeleton";
 import ChatList from "./specific/ChatList";
@@ -18,10 +19,18 @@ export default function AppSidebar() {
   const params = useParams();
   const chatid = params.chatid;
 
+  const { isMobile, setOpenMobile } = useSidebar();
+
+  const onClickSiceclose = () => {
+    if (isMobile) {
+      setOpenMobile(false);
+    }
+  };
+
   const handleDeletechat = (e, id, groupchat) => {
     e.preventDefault();
     console.log("delete chat with id:", id, "groupchat:", groupchat);
-  }
+  };
 
   return (
     <div>
@@ -43,6 +52,7 @@ export default function AppSidebar() {
                 },
               ]}
               handleDeletechat={handleDeletechat}
+              onClickSiceclose={onClickSiceclose}
             />
           </SidebarGroup>
         </SidebarContent>
