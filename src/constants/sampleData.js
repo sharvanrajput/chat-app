@@ -4,7 +4,7 @@ export const sampleChats = [
     name: "John Doe",
     avatar: ["https://github.com/shadcn.png"],
     groupChat: false,
-    members: ["1", "2"], 
+    members: ["1", "2"],
   },
   {
     id: "2",
@@ -20,3 +20,21 @@ export const sampleChats = [
     members: ["1", "2"],
   },
 ];
+
+
+export const sampleNotifications = [
+  {
+    id: "1",
+    sender: {
+      name: "sharvan",
+      avatar: "https://github.com/user3.png"
+    }
+  },
+  {
+    id: "1",
+    sender: {
+      name: "sharvan",
+      avatar: "https://github.com/user3.png"
+    }
+  }
+]

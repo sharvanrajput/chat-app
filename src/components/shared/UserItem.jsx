@@ -1,10 +1,10 @@
-import React from "react";
+import React, { memo } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Button } from "../ui/button";
 import { GrAddCircle } from "react-icons/gr";
 import { Card, CardContent } from "../ui/card";
 
-export default function UserItem({ user, handler, handlerIsLoading }) {
+function UserItem({ user, handler, handlerIsLoading }) {
   const { name, _id, avatar } = user;
   return (
     <Card className={"py-0 mb-1  m-2"}>
@@ -30,3 +30,5 @@ export default function UserItem({ user, handler, handlerIsLoading }) {
     </Card>
   );
 }
+
+export default memo(UserItem);

@@ -24,6 +24,15 @@ import {
 import Search from "../specific/Search";
 import NewGroups from "../specific/NewGroups";
 import Notifications from "../specific/Notifications";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 
 export default function Header() {
   const { toggleSidebar, open } = useSidebar();
@@ -37,7 +46,7 @@ export default function Header() {
   const openNotification = () => setNotifications((prev) => !prev);
   const openNewGroup = () => setNewGroup((prev) => !prev);
   const navigateToGroup = () => navigate("/groups");
-  const logouthandler = () => {};
+  const logouthandler = () => { };
 
   return (
     <nav className="bg-white py-2 px-3 border border-b">
@@ -62,7 +71,8 @@ export default function Header() {
             fun={openNotification}
             Icon={Bell}
             tip="Notifications"
-            dylogBody={<Notifications />}
+            dropdown={true}
+          // dylogBody={<Notifications />}
           />
           <Navitom
             fun={logouthandler}
@@ -73,12 +83,12 @@ export default function Header() {
         </div>
       </div>
 
-      
+
     </nav>
   );
 }
 
-const Navitom = ({ fun, Icon, tip, dylogBody, variant = "outline" }) => {
+const Navitom = ({ dropdown, fun, Icon, tip, dylogBody, variant = "outline" }) => {
   if (dylogBody) {
     return (
       <Dialog>
@@ -86,7 +96,7 @@ const Navitom = ({ fun, Icon, tip, dylogBody, variant = "outline" }) => {
           <Tooltip>
             <TooltipTrigger asChild>
               <DialogTrigger asChild>
-                <Button  
+                <Button
                   variant={variant}
                   size="icon"
                   className={
@@ -105,21 +115,52 @@ const Navitom = ({ fun, Icon, tip, dylogBody, variant = "outline" }) => {
       </Dialog>
     );
   }
+  if (dropdown) {
+    return (
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button
+            onClick={fun}
+            variant={variant}
+            size="icon"
+            className={
+              variant === "outline" &&
+              "  bg-white text-black r  hover:bg-gray-200 "
+            }
+          >
+            <Icon />
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent className={"ms-10"} >
+          <DropdownMenuGroup>
+            <DropdownMenuLabel>Notification</DropdownMenuLabel>
+            <DropdownMenuItem>Profile</DropdownMenuItem>
+            <DropdownMenuItem>Billing</DropdownMenuItem>
+          </DropdownMenuGroup>
+          <DropdownMenuSeparator />
+
+        </DropdownMenuContent>
+      </DropdownMenu>
+    );
+  }
+
+
+
   return (
     <TooltipProvider>
       <Tooltip>
         <TooltipTrigger asChild>
-            <Button
-              onClick={fun}
-              variant={variant}
-              size="icon"
-              className={
-                variant === "outline" &&
-                "  bg-white text-black r  hover:bg-gray-200 "
-              }
-            >
-              <Icon />
-            </Button>
+          <Button
+            onClick={fun}
+            variant={variant}
+            size="icon"
+            className={
+              variant === "outline" &&
+              "  bg-white text-black r  hover:bg-gray-200 "
+            }
+          >
+            <Icon />
+          </Button>
         </TooltipTrigger>
         <TooltipContent>{tip}</TooltipContent>
       </Tooltip>
