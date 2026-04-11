@@ -21,20 +21,27 @@ export const sampleChats = [
   },
 ];
 
+export const sampleUserData = [
+  {
+    id:"1",
+    name:"User 1"
+  }
+]
+
 
 export const sampleNotifications = [
   {
     id: "1",
     sender: {
       name: "sharvan",
-      avatar: "https://github.com/user3.png"
+      avatar: "https://github.com/user1.png"
     }
   },
   {
-    id: "1",
+    id: "2",
     sender: {
-      name: "sharvan",
-      avatar: "https://github.com/user3.png"
+      name: "ram",
+      avatar: "https://github.com/user2.png"
     }
   }
 ]

@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import { Search as SearchIcon } from "lucide-react";
+import { useEffect, useState } from "react";
+import UserItem from "../shared/UserItem";
+import { Button } from "../ui/button";
 import { DialogClose, DialogTitle } from "../ui/dialog";
 import { Input } from "../ui/input";
-import { Search as SearchIcon } from "lucide-react";
-import { Button } from "../ui/button";
 import { ScrollArea } from "../ui/scroll-area";
-import UserItem from "../shared/UserItem";
-const users = [
+const res = [
   {
     name: "sharvan",
   },
@@ -21,11 +21,14 @@ const users = [
   {
     name: "it department",
   },
-  
 ];
 export default function Search() {
+  const [users , setUsers] = useState(res)
   const [searched, setSearched] = useState(users);
   const [input, setIput] = useState("");
+
+  const addFriendHandler = () => {};
+  let isLoadingSentFriendRequres = false;
 
   useEffect(() => {
     if (!input.trim()) {
@@ -45,7 +48,7 @@ export default function Search() {
       <div className="relative ">
         <Input
           type={"text"}
-          Placeholder={"Search People"}
+          placeholder={"Search People"}
           vlaue={input}
           onChange={(e) => setIput(e.target.value)}
         />
@@ -58,7 +61,12 @@ export default function Search() {
 
       <ScrollArea className="max-h-[300px] w-full rounded-md border  ">
         {searched?.map((ele, i) => (
-          <UserItem key={i} user={ele} />
+          <UserItem
+            key={i}
+            user={ele}
+            handler={addFriendHandler}
+            handlerIsLoading={isLoadingSentFriendRequres}
+          />
         ))}
       </ScrollArea>
     </>
