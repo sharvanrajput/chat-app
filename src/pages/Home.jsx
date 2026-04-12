@@ -7,9 +7,9 @@ function Home() {
   return (
     <>
       <Title title="Chat app" description={" this is my chat app"} />
-      <div>
-        home
-        
+      <div className="text-2xl h-screen flex justify-center items-center" >
+        Select a friend to chat
+
       </div>
     </>
   );

@@ -5,25 +5,10 @@ import { Button } from "../ui/button";
 import { DialogClose, DialogTitle } from "../ui/dialog";
 import { Input } from "../ui/input";
 import { ScrollArea } from "../ui/scroll-area";
-const res = [
-  {
-    name: "sharvan",
-  },
-  {
-    name: "rohit",
-  },
-  {
-    name: "vikas",
-  },
-  {
-    name: "jolly llb 2",
-  },
-  {
-    name: "it department",
-  },
-];
+import { sampleUserData } from "@/constants/sampleData";
+
 export default function Search() {
-  const [users , setUsers] = useState(res)
+  const [users, setUsers] = useState(sampleUserData);
   const [searched, setSearched] = useState(users);
   const [input, setIput] = useState("");
 

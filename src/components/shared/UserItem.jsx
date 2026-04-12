@@ -3,8 +3,10 @@ import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Button } from "../ui/button";
 import { GrAddCircle } from "react-icons/gr";
 import { Card, CardContent } from "../ui/card";
+import { IoMdRemoveCircleOutline } from "react-icons/io";
 
-function UserItem({ user, handler, handlerIsLoading }) {
+
+function UserItem({ user, handler, handlerIsLoading, isAdded }) {
   const { name, _id, avatar } = user;
   return (
     <Card className={"py-0 mb-1  m-2"}>
@@ -23,7 +25,9 @@ function UserItem({ user, handler, handlerIsLoading }) {
             onClick={handler}
             disabled={handlerIsLoading}
           >
-            <GrAddCircle className="size-5" />
+
+            {isAdded ? <IoMdRemoveCircleOutline className="size-5 text-red-500" /> : <GrAddCircle className="size-5" />}
+
           </Button>
         </div>
       </CardContent>
