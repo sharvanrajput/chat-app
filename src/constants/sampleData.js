@@ -65,3 +65,38 @@ export const sampleNotifications = [
     }
   }
 ]
+
+export const sampleMessage = [
+  {
+    attachment: [
+      {
+        public_id: "asdf",
+        url: "https://www.w3schools.com/howto/img_avatar.png"
+      }
+    ],
+    content: "L*uda ka message hain",
+    _id: "asdfajdhfasdf",
+    sender: {
+      _id: "user.i_id",
+      name: "Chaman"
+    },
+    chat: "chatid",
+    createdAt: "2026-04-12T10:41:30.630Z"
+  },
+  {
+    attachment: [
+      {
+        public_id: "asdf",
+        url: "https://www.w3schools.com/howto/img_avatar.png"
+      }
+    ],
+    content: "to hi to hain L*uda",
+    id: "asdfajdhf",
+    sender: {
+      id: "1",
+      name: "Chaman"
+    },
+    chat: "2",
+    createdAt: "2026-04-12T10:41:30.630Z"
+  },
+]

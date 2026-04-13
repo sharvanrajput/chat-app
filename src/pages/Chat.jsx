@@ -18,13 +18,25 @@ import { CgAttachment } from "react-icons/cg";
 import { Send } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { sampleMessage } from "@/constants/sampleData";
+import MessageItem from "@/components/shared/MessageItem";
+
+const user = {
+  id: "1",
+  name: "sharvan rajput"
+}
 function Chat() {
   return (
     <>
       <Title title="Chat app" description={" this is my chat app"} />
+
       <div className="h-[83%] bg-gray-200">
 
-
+        {
+          sampleMessage.map((i) => (
+            <MessageItem message={i} user={user} />
+          ))
+        }
 
 
         {/* chat
@@ -39,12 +51,12 @@ function Chat() {
           </SheetContent>
         </Sheet> */}
       </div>
+
       <form className="h-[7%] mt-2 w-[98%] mx-auto bg-gray-200 rounded-full ">
         <div className=" flex justify-between items-center
        h-full mt-2 w-full relative  border border-gray-400 rounded-full">
 
           <DropdownMenu>
-
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" className={" mx-2 rotate-30 hover:bg-transparent "}>
                 <CgAttachment className="size-5" />
