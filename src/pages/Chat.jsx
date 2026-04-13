@@ -22,7 +22,7 @@ import { sampleMessage } from "@/constants/sampleData";
 import MessageItem from "@/components/shared/MessageItem";
 
 const user = {
-  id: "1",
+  _id: "1",
   name: "sharvan rajput"
 }
 function Chat() {
@@ -34,7 +34,7 @@ function Chat() {
 
         {
           sampleMessage.map((i) => (
-            <MessageItem message={i} user={user} />
+            <MessageItem key={i._id} message={i} user={user} />
           ))
         }
 

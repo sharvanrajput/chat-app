@@ -6,6 +6,7 @@ export default function Layout(WrappedComponent) {
   return (props) => {
     return (
       <>
+       
         <SidebarProvider
           style={{
             "--sidebar-width": "25rem",

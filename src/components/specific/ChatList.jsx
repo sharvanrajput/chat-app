@@ -18,7 +18,7 @@ export default function ChatList({
 }) {
   return (
     <>
-      <div className=" ">
+      <div className=" space-y-3 ">
         {chats.map((data, i) => {
           const { id, avatar, members } = data;
 
