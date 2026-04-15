@@ -4,43 +4,42 @@ import { Link } from "react-router-dom";
 import AvatarCard from "./AvatarCard";
 
 export default function GroupList({ w = "100%", myGroups = [], chatid }) {
-  const sameSender = chatid === id;
   return (
     <>
-
       {myGroups.length > 0 ? (
-        myGroups.map((group) => (
-          <GroupListItem group={group} chatId={chatid} />
-        ))
+        myGroups.map((group) => <GroupListItem group={group} chatId={chatid} />)
       ) : (
         <p className="text-2xl font-bold">No Group</p>
       )}
-
     </>
   );
 }
 
 const GroupListItem = memo(({ group, chatId }) => {
   const { name, avatar, id } = group;
-
+  const sameSender = chatId === id;
   return (
     <Link
       className="hover:bg-gray-500/0 "
       to={`?group=${id}`}
       onContextMenu={(e) => handleDeletechat(e, id, groupchat)}
-    // onClick={onClickSiceclose}
+      onClick={(e) => {
+        if (chatId === id) e.preventDefault();
+      }}
     >
-      <Card className={"py-0 mb-1"}>
+      <Card className={"py-0 mb-0"}>
         <CardContent className={"px-0"}>
           <div
-            className={`flex gap-4 items-center p-3 rounded-sm relative    `}
+            className={` p-3 rounded-sm relative  ${sameSender ? "bg-black text-white " : "bg-white text-black"}`}
           >
-            <AvatarCard avatars={avatar} />
-            <p className="text-md font-semibold">{name}</p>
+            <div className="flex gap-3 items-center" >
+              <AvatarCard avatars={avatar} />
+              <p className="text-md mb-0 font-semibold">{name}</p>
+            </div>
+            asdfafsd
           </div>
         </CardContent>
-      </Card >
-
+      </Card>
     </Link>
   );
 });

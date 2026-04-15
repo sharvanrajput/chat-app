@@ -13,7 +13,7 @@ import { Skeleton } from "./ui/skeleton";
 import ChatList from "./specific/ChatList";
 import ChatItem from "./shared/ChatItem";
 import { sampleChats } from "@/constants/sampleData";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useParams, useSearchParams } from "react-router-dom";
 import GroupList from "./shared/GroupList";
 
 export default function AppSidebar() {
@@ -42,7 +42,7 @@ export default function AppSidebar() {
     e.preventDefault();
     console.log("delete chat with id:", id, "groupchat:", groupchat);
   };
-
+  const chatId = useSearchParams()[0].get("group");
   return (
     <div>
       <Sidebar>
@@ -50,11 +50,7 @@ export default function AppSidebar() {
         <SidebarContent className={"bg-white!"}>
           <SidebarGroup className={"space-y-4"}>
             {isGroupChat ? (
-              <GroupList
-                myGroups={sampleChats}
-                chatid={chatid}
-                
-              />
+              <GroupList myGroups={sampleChats} chatid={chatId} />
             ) : (
               <ChatList
                 chats={sampleChats}
