@@ -50,7 +50,11 @@ export default function AppSidebar() {
         <SidebarContent className={"bg-white!"}>
           <SidebarGroup className={"space-y-4"}>
             {isGroupChat ? (
-              <GroupList />
+              <GroupList
+                myGroups={sampleChats}
+                chatid={chatid}
+                
+              />
             ) : (
               <ChatList
                 chats={sampleChats}

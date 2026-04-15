@@ -38,7 +38,7 @@ export default function NewGroups() {
           type={"text"}
           placeholder={"Search People"}
           vlaue={input}
-          onChange={(e) => setIput(e.target.value)}
+          onChange={(e) => setInput(e.target.value)}
         />
 
       </div>
