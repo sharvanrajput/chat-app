@@ -34,9 +34,12 @@ const GroupListItem = memo(({ group, chatId }) => {
           >
             <div className="flex gap-3 items-center" >
               <AvatarCard avatars={avatar} />
-              <p className="text-md mb-0 font-semibold">{name}</p>
+              <div>
+
+                <p className="text-md mb-0 font-semibold">{name}</p>
+                <p className="text-md mb-0 font-semibold">{name}</p>
+              </div>
             </div>
-            asdfafsd
           </div>
         </CardContent>
       </Card>

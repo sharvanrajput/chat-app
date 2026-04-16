@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { sampleChats } from "@/constants/sampleData";
 import ChatList from "@/components/specific/ChatList";
 import { Button } from "@/components/ui/button";
-import { Edit, Edit2, Save, Trash } from "lucide-react";
+import { Delete, Edit, Edit2, Save, Trash, Trash2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import {
   Tooltip,
@@ -18,6 +18,17 @@ import Title from "@/components/shared/Title";
 import { Card, CardContent } from "@/components/ui/card";
 import { DiOnedrive } from "react-icons/di";
 import { MdOutlineDoneAll } from "react-icons/md";
+import { GrAddCircle } from "react-icons/gr";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
 
 function Groups() {
   const navigate = useNavigate();
@@ -40,6 +51,11 @@ function Groups() {
   useEffect(() => {
     setGroupName(`Group Name ${chatid}`);
     setGroupNameUpdated(`Group Name ${chatid}`);
+    return () => {
+      setGroupName("")
+      setGroupNameUpdated("")
+      setIsEdit(false)
+    }
   }, [chatid]);
 
   const GroupName = (
@@ -67,10 +83,40 @@ function Groups() {
           </>
         )}
       </div>
-
       <Card>
         <CardContent></CardContent>
       </Card>
+      <div className="w-full ">
+
+        <div className="flex md:flex-row-reverse gap-2 md:justify-between flex-col">
+
+          <Button> <GrAddCircle /> Add Member</Button>
+          <Dialog>
+            <DialogTrigger asChild >
+              <Button variant="destructive" > <Trash2 /> Delete Member</Button>
+            </DialogTrigger>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>Are you absolutely sure?</DialogTitle>
+                <DialogDescription>
+                  This action cannot be undone. This will permanently delete your account
+                  and remove your data from our servers.
+                </DialogDescription>
+              </DialogHeader>
+              <DialogFooter>
+                <DialogClose asChild>
+                  <Button variant="outline">No</Button>
+                </DialogClose>
+                <DialogClose asChild>
+                  <Button variant="outline">Yes</Button>
+                </DialogClose>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
+        </div>
+      </div>
+
+
     </>
   );
 
