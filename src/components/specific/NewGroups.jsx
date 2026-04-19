@@ -24,12 +24,6 @@ export default function NewGroups() {
 
   let isLoadingSentFriendRequres = false;
 
-
-
-
-
-
-
   return (
     <>
       <DialogTitle className={"text-center text-2xl font-bold  "}>New Group</DialogTitle>
@@ -43,7 +37,7 @@ export default function NewGroups() {
 
       </div>
       <p className="text-lg font-bold mb-0"  >Members</p>
-      <ScrollArea className="max-h-[300px] w-full rounded-md border  ">
+      <ScrollArea className="h-[300px] w-full rounded-md border">
         {users?.map((ele, i) => (
           <UserItem
             key={i}
