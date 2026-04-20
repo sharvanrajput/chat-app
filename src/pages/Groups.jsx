@@ -28,7 +28,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog"
+} from "@/components/ui/dialog";
 import UserItem from "@/components/shared/UserItem";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
@@ -38,8 +38,7 @@ function Groups() {
     navigate("/");
   };
 
-  const chatid = useSearchParams()[0].get("group")
-
+  const chatid = useSearchParams()[0].get("group");
 
   const [isEdit, setIsEdit] = useState(false);
   const [groupName, setGroupName] = useState("");
@@ -48,7 +47,7 @@ function Groups() {
   const [selectedMembers, setSelectedMembers] = useState([]);
   const selectFriendHandler = (id) => {
     setSelectedMembers((prev) =>
-      prev.includes(id) ? prev.filter((ele) => ele !== id) : [...prev, id]
+      prev.includes(id) ? prev.filter((ele) => ele !== id) : [...prev, id],
     );
   };
   const updateGroupName = () => {
@@ -60,26 +59,16 @@ function Groups() {
     setGroupName(`Group Name ${chatid}`);
     setGroupNameUpdated(`Group Name ${chatid}`);
     return () => {
-      setGroupName("")
-      setGroupNameUpdated("")
-      setIsEdit(false)
-    }
+      setGroupName("");
+      setGroupNameUpdated("");
+      setIsEdit(false);
+    };
   }, [chatid]);
 
-  const addFriendHandler = () => {
-
-  }
-  const addMeberHandler = () => {
-
-  }
-  const removeMemberHandler
-    = () => {
-
-    }
-  const isLoadingSentFriendRequres = false
-
-
-
+  const addFriendHandler = () => {};
+  const addMeberHandler = () => {};
+  const removeMemberHandler = () => {};
+  const isLoadingSentFriendRequres = false;
 
   return (
     <div className="flex flex-col items-center justify-center relative py-4 px-12 ">
@@ -111,9 +100,32 @@ function Groups() {
         </div>
         <Card className="w-full border-0 ring-0">
           <CardContent className="w-full">
-            <ScrollArea className="h-[500px] w-full rounded-md border">
-
-              {[...sampleUserData, ...sampleUserData, ...sampleUserData, ...sampleUserData, ...sampleUserData, ...sampleUserData, ...sampleUserData, ...sampleUserData, ...sampleUserData, ...sampleUserData, ...sampleUserData, ...sampleUserData, ...sampleUserData, ...sampleUserData, ...sampleUserData, ...sampleUserData, ...sampleUserData, ...sampleUserData, ...sampleUserData, ...sampleUserData, ...sampleUserData, ...sampleUserData, ...sampleUserData,]?.map((ele, i) => (
+            <ScrollArea className="h-[400px] w-full rounded-md border">
+              {[
+                ...sampleUserData,
+                ...sampleUserData,
+                ...sampleUserData,
+                ...sampleUserData,
+                ...sampleUserData,
+                ...sampleUserData,
+                ...sampleUserData,
+                ...sampleUserData,
+                ...sampleUserData,
+                ...sampleUserData,
+                ...sampleUserData,
+                ...sampleUserData,
+                ...sampleUserData,
+                ...sampleUserData,
+                ...sampleUserData,
+                ...sampleUserData,
+                ...sampleUserData,
+                ...sampleUserData,
+                ...sampleUserData,
+                ...sampleUserData,
+                ...sampleUserData,
+                ...sampleUserData,
+                ...sampleUserData,
+              ]?.map((ele, i) => (
                 <UserItem
                   key={i}
                   user={ele}
@@ -129,8 +141,11 @@ function Groups() {
         <div className="w-full ">
           <div className="flex md:flex-row-reverse gap-2 md:justify-between flex-col">
             <Dialog>
-              <DialogTrigger asChild >
-                <Button> <GrAddCircle /> Add Member</Button>
+              <DialogTrigger asChild>
+                <Button>
+                  {" "}
+                  <GrAddCircle /> Add Member
+                </Button>
               </DialogTrigger>
               <DialogContent>
                 <DialogHeader>
@@ -139,7 +154,6 @@ function Groups() {
                 <>
                   <ScrollArea className="max-h-[300px] w-full rounded-md border  ">
                     {sampleUserData.length > 0 &&
-
                       sampleUserData?.map((ele, i) => (
                         <UserItem
                           key={i}
@@ -148,12 +162,8 @@ function Groups() {
                           handler={() => selectFriendHandler(ele.id)}
                           handlerIsLoading={isLoadingSentFriendRequres}
                         />
-                      ))
-
-                    }
-                    {
-                      sampleUserData.length == 0 && <p>No Friend</p>
-                    }
+                      ))}
+                    {sampleUserData.length == 0 && <p>No Friend</p>}
                   </ScrollArea>
                 </>
                 <DialogFooter>
@@ -161,22 +171,31 @@ function Groups() {
                     <Button variant="destructive">Cancle</Button>
                   </DialogClose>
                   <DialogClose asChild>
-                    <Button variant="outline" disabled={isLoadingSentFriendRequres} onClick={addMeberHandler} >Save Changes</Button>
+                    <Button
+                      variant="outline"
+                      disabled={isLoadingSentFriendRequres}
+                      onClick={addMeberHandler}
+                    >
+                      Save Changes
+                    </Button>
                   </DialogClose>
                 </DialogFooter>
               </DialogContent>
             </Dialog>
 
             <Dialog>
-              <DialogTrigger asChild >
-                <Button variant="destructive" > <Trash2 /> Delete Member</Button>
+              <DialogTrigger asChild>
+                <Button variant="destructive">
+                  {" "}
+                  <Trash2 /> Delete Member
+                </Button>
               </DialogTrigger>
               <DialogContent>
                 <DialogHeader>
                   <DialogTitle>Are you absolutely sure?</DialogTitle>
                   <DialogDescription>
-                    This action cannot be undone. This will permanently delete your account
-                    and remove your data from our servers.
+                    This action cannot be undone. This will permanently delete
+                    your account and remove your data from our servers.
                   </DialogDescription>
                 </DialogHeader>
                 <DialogFooter>
@@ -191,8 +210,6 @@ function Groups() {
             </Dialog>
           </div>
         </div>
-
-
       </>
     </div>
   );
