@@ -1,6 +1,8 @@
 import { lazy, Suspense, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import ProtectedRoute from "./components/ProtectedRoute";
+import NotFound from "./pages/NotFound";
+import AdminLogin from "./pages/admin/AdminLogin";
 
 const Login = lazy(() => import("./pages/login"));
 const Home = lazy(() => import("./pages/Home"));
@@ -30,6 +32,13 @@ export default function App() {
               </ProtectedRoute>
             }
           />
+
+
+          <Route path="/admin/login" element={<AdminLogin />} />
+
+          <Route path="*" element={<NotFound />} />
+
+
         </Routes>
       </Suspense>
     </>
