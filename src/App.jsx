@@ -1,13 +1,16 @@
 import { lazy, Suspense, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import ProtectedRoute from "./components/ProtectedRoute";
-import NotFound from "./pages/NotFound";
-import AdminLogin from "./pages/admin/AdminLogin";
 
+ 
 const Login = lazy(() => import("./pages/login"));
 const Home = lazy(() => import("./pages/Home"));
 const Groups = lazy(() => import("./pages/Groups"));
 const Chat = lazy(() => import("./pages/Chat"));
+const NotFound = lazy(() => import("./pages/NotFound"));
+const AdminLogin = lazy(() => import("./pages/admin/AdminLogin"));
+const Dashboard = lazy(() => import("./pages/admin/Dashboard"));
+
 
 const user = true;
 
@@ -34,7 +37,9 @@ export default function App() {
           />
 
 
-          <Route path="/admin/login" element={<AdminLogin />} />
+          <Route path="/admin" element={<AdminLogin />} />
+          
+          <Route path="/admin/dashboard" element={<Dashboard />} />
 
           <Route path="*" element={<NotFound />} />
 

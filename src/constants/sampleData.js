@@ -1,3 +1,9 @@
+import Dashboard from "@/pages/admin/Dashboard";
+import { MessagesSquare, Users } from "lucide-react";
+import { BiMessage } from "react-icons/bi";
+import { GrDashboard, GrUserPolice } from "react-icons/gr";
+import { PiUserSound } from "react-icons/pi";
+
 export const sampleChats = [
   {
     id: "1",
@@ -123,3 +129,26 @@ export const sampleMessage = [
     createdAt: "2026-04-12T10:41:30.630Z",
   },
 ];
+
+export const AdminSidebarData = [
+  {
+    text: "Dashboard",
+    path: "/admin/dashboard",
+    icon: GrDashboard
+  },
+  {
+    text: "Users",
+    path: "/admin/user-management",
+    icon: PiUserSound
+  },
+  {
+    text: "Group",
+    path: "/admin/group-management",
+    icon: GrUserPolice
+  },
+  {
+    text: "Messages",
+    path: "/admin/msg-management",
+    icon: BiMessage
+  },
+]
