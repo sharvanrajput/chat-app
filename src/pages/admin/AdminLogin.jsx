@@ -9,13 +9,13 @@ const AdminLogin = () => {
 
   const [key, setKey] = useState()
 
-  const isAdmin  = true 
 
   const submitHandler = (e) => {
     e.preventDefault()
     console.log("submit")
   }
- 
+
+  const isAdmin = true
   if (isAdmin) return <Navigate to="/admin/dashboard" />
 
   return (

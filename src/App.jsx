@@ -1,8 +1,10 @@
 import { lazy, Suspense, useState } from "react";
 import { Route, Routes } from "react-router-dom";
-import ProtectedRoute from "./components/ProtectedRoute";
 
+import ProtectedRoute from "./components/ProtectedRoute";
  
+
+
 const Login = lazy(() => import("./pages/login"));
 const Home = lazy(() => import("./pages/Home"));
 const Groups = lazy(() => import("./pages/Groups"));
@@ -10,6 +12,9 @@ const Chat = lazy(() => import("./pages/Chat"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const AdminLogin = lazy(() => import("./pages/admin/AdminLogin"));
 const Dashboard = lazy(() => import("./pages/admin/Dashboard"));
+const GroupManagement = lazy(() => import("./pages/admin/Groups"));
+const Users = lazy(() => import("./pages/admin/Users"));
+const MessageManagement = lazy(() => import("./pages/admin/MessageManagement"));
 
 
 const user = true;
@@ -38,8 +43,11 @@ export default function App() {
 
 
           <Route path="/admin" element={<AdminLogin />} />
-          
+
           <Route path="/admin/dashboard" element={<Dashboard />} />
+          <Route path="/admin/user-management" element={<Users />} />
+          <Route path="/admin/group-management" element={<GroupManagement />} />
+          <Route path="/admin/msg-management" element={<MessageManagement />} />
 
           <Route path="*" element={<NotFound />} />
 

@@ -1,5 +1,5 @@
 import { AdminSidebarData } from "@/constants/sampleData";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useLocation } from "react-router-dom";
 import {
     Sidebar,
     SidebarContent,
@@ -12,6 +12,7 @@ import {
     useSidebar,
 } from "./ui/sidebar";
 import { Button } from "./ui/button";
+import { FaWhatsapp } from "react-icons/fa";
 
 export default function AdminSidebar() {
     const { isMobile, setOpenMobile } = useSidebar();
@@ -22,11 +23,16 @@ export default function AdminSidebar() {
         }
     };
 
+    const { pathname } = useLocation()
+
+
+
     return (
         <>
-            <Sidebar>
-                <SidebarHeader className={"bg-white"} >
-                    ADMIN DASHBOARD
+            <Sidebar collapsible="icon"  >
+                <SidebarHeader className={"bg-white flex flex-row justify-start gap-2 items-center "} >
+                    <FaWhatsapp className="size-7" />
+                    Hi..
                 </SidebarHeader>
                 <SidebarContent className={"bg-white"}>
                     <SidebarGroup>
@@ -34,11 +40,9 @@ export default function AdminSidebar() {
                             {AdminSidebarData.map((menu, i) => (
                                 <SidebarMenuItem key={i}>
                                     <Link onClick={onClickSiceclose} to={menu.path}   >
-                                        <SidebarMenuButton asChild>
-                                            <Button variant="ghost">
-                                                <menu.icon />
-                                                {menu.text}
-                                            </Button>
+                                        <SidebarMenuButton className={`${menu.path == pathname && "bg-black text-white "} hover:bg-gray-600 hover:text-white`} >
+                                            <menu.icon className="size-15" />
+                                            {menu.text}
                                         </SidebarMenuButton>
                                     </Link>
                                 </SidebarMenuItem>

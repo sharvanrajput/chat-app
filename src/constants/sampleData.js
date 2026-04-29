@@ -3,6 +3,9 @@ import { MessagesSquare, Users } from "lucide-react";
 import { BiMessage } from "react-icons/bi";
 import { GrDashboard, GrUserPolice } from "react-icons/gr";
 import { PiUserSound } from "react-icons/pi";
+import { MdDashboard, MdMessage, MdOutlineDashboard } from "react-icons/md";
+import { FaLayerGroup, FaUsers } from "react-icons/fa";
+
 
 export const sampleChats = [
   {
@@ -134,21 +137,72 @@ export const AdminSidebarData = [
   {
     text: "Dashboard",
     path: "/admin/dashboard",
-    icon: GrDashboard
+    icon: MdDashboard
   },
   {
     text: "Users",
     path: "/admin/user-management",
-    icon: PiUserSound
+    icon: FaUsers
   },
   {
     text: "Group",
     path: "/admin/group-management",
-    icon: GrUserPolice
+    icon: FaLayerGroup
   },
   {
     text: "Messages",
     path: "/admin/msg-management",
-    icon: BiMessage
+    icon: MdMessage
+  },
+]
+
+export const sampleAllUsers = [
+  {
+    id: 1,
+    name: "sharvan",
+    avatar: "http://github.com/user5000.png",
+    username: "iamsharvan09",
+    friends: 14,
+    groups: 5,
+  },
+  {
+    id: 2,
+    name: "rohan",
+    avatar: "http://github.com/user5001.png",
+    username: "rohan_652",
+    friends: 20,
+    groups: 1,
+  },
+  {
+    id: 1,
+    name: "sharvan",
+    avatar: "http://github.com/user5002.png",
+    username: "iamsharvan09",
+    friends: 14,
+    groups: 5,
+  },
+  {
+    id: 2,
+    name: "rohan",
+    avatar: "http://github.com/user5003.png",
+    username: "rohan_652",
+    friends: 20,
+    groups: 1,
+  },
+  {
+    id: 1,
+    name: "sharvan",
+    avatar: "http://github.com/user5004.png",
+    username: "iamsharvan09",
+    friends: 14,
+    groups: 5,
+  },
+  {
+    id: 2,
+    name: "rohan",
+    avatar: "http://github.com/user5005.png",
+    username: "rohan_652",
+    friends: 20,
+    groups: 1,
   },
 ]
